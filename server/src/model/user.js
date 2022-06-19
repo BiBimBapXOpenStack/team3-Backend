@@ -51,6 +51,7 @@ class User {
     }
   }
 
+  // jwt로 토큰 값을 넘겨준다음 프론트에서 decode 시켜주는 방식으로 구현하려 했으나 decode를 어떻게 해야할 지 몰라서 일단 그냥 id값을 넘겨주기로....
   async login() {
     try {
       const { id, pw } = await UserModel.getUserInfo(this.body.body.id);
@@ -62,13 +63,12 @@ class User {
           const isEqualPW = bcrypt.compareSync(this.body.body.pw, pw);
           console.log(isEqualPW);
           if (isEqualPW) {
-            if (this.body.session.id) {
-              return { status: "OK", code: 200, token: jwtToken };
-            } else {
-              this.body.session.id = id;
-              console.log(this.body.session.id);
-              return { status: "OK", code: 200, token: jwtToken };
-            }
+            return {
+              status: "OK",
+              code: 200,
+              token: jwtToken,
+              id: this.body.body.id,
+            };
           } else {
             return {
               status: "OK",

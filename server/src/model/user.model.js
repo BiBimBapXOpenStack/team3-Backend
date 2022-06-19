@@ -58,22 +58,23 @@ class UserModel {
     });
   }
 
+  // 회원정보 수정 -> 아이디는 변경 못함 (프론트에서 아이디, 비밀번호, 이름, 이메일 정보 다 전달받음)
   static editUserModel(userInfo) {
     return new Promise((resolve, reject) => {
       const newPW = bcrypt.hashSync(userInfo.pw, saltRounds);
-      console.log(newPW);
-      const query = "UPDATE users SET uname=?, pw=?, email=?";
+      const query = `UPDATE users SET uname=?, pw=?, email=?`;
       db.query(
         query,
-        [userInfo.uname, newPW, userInfo.email],
+        [userInfo.name, newPW, userInfo.email],
         (err, results) => {
-          if (resolve)
+          if (resolve) {
+            //console.log(query);
             resolve({
               status: "OK",
               code: 200,
               message: "수정을 완료했습니다.",
             });
-          else reject(err);
+          } else reject(err);
         }
       );
     });
