@@ -61,6 +61,7 @@ class UserModel {
   static editUserModel(userInfo) {
     return new Promise((resolve, reject) => {
       const newPW = bcrypt.hashSync(userInfo.pw, saltRounds);
+      console.log(newPW);
       const query = "UPDATE users SET uname=?, pw=?, email=?";
       db.query(
         query,

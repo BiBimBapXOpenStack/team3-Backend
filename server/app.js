@@ -3,6 +3,8 @@ const app = express();
 const cors = require("cors");
 const PORT = 8000;
 const api = require("./src/routes/index");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 
 let corsOpions = {
   origin: "*",
@@ -11,6 +13,16 @@ let corsOpions = {
 app.use(cors(corsOpions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(
+  session({
+    key: "loginData",
+    secret: "testSecret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { expire: 60 * 60 * 24 },
+  })
+);
 app.use("/", api);
 
 app.listen(PORT, () => {

@@ -53,17 +53,22 @@ class User {
 
   async login() {
     try {
-      const { id, pw } = await UserModel.getUserInfo(this.body.id);
+      const { id, pw } = await UserModel.getUserInfo(this.body.body.id);
       const jwtToken = await jwt.sign(id);
       console.log(id, pw);
-      console.log(this.body.id, this.body.pw);
+      console.log(this.body.body.id, this.body.body.pw);
       if (id) {
-        if (id === this.body.id) {
-          console.log("id equal");
-          const isEqualPW = bcrypt.compareSync(this.body.pw, pw);
+        if (id === this.body.body.id) {
+          const isEqualPW = bcrypt.compareSync(this.body.body.pw, pw);
           console.log(isEqualPW);
           if (isEqualPW) {
-            return { status: "OK", code: 200, token: jwtToken };
+            if (this.body.session.id) {
+              return { status: "OK", code: 200, token: jwtToken };
+            } else {
+              this.body.session.id = id;
+              console.log(this.body.session.id);
+              return { status: "OK", code: 200, token: jwtToken };
+            }
           } else {
             return {
               status: "OK",

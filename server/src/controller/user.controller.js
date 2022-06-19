@@ -16,6 +16,8 @@ const get = {
     const response = await user.idCheck();
     //console.log(req.params.id);
     if (response.status === "OK") {
+      console.log(req.session.id);
+      delete req.session.id;
       return res.json({ status: "OK", code: 200 });
     } else {
       return res.json({ status: "Bad Request", code: 400 });
@@ -34,9 +36,8 @@ const post = {
     const response = await user.register();
     return res.json(response);
   },
-
   login: async (req, res) => {
-    const user = new User(req.body);
+    const user = new User(req);
     const response = await user.login();
     return res.json(response);
   },
