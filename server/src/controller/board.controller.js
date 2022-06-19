@@ -2,12 +2,12 @@ const Board = require("../model/board");
 
 const get = {
   boardinfo: async (req, res) => {
-    const board = new Board(req.params.b_id);
+    const board = new Board(req.params.bid);
     const response = await board.getInfo();
     return res.json(response);
   },
   withdraw: async (req, res) => {
-    const board = new Board(req.params.b_id);
+    const board = new Board(req.params.bid);
     const response = await board.deleteBoard();
     return res.json(response);
   },

@@ -62,10 +62,10 @@ class UserModel {
   static editUserModel(userInfo) {
     return new Promise((resolve, reject) => {
       const newPW = bcrypt.hashSync(userInfo.pw, saltRounds);
-      const query = `UPDATE users SET uname=?, pw=?, email=?`;
+      const query = `UPDATE users SET uname=?, pw=?, email=? WHERE id=?`;
       db.query(
         query,
-        [userInfo.name, newPW, userInfo.email],
+        [userInfo.name, newPW, userInfo.email, userInfo.id],
         (err, results) => {
           if (resolve) {
             //console.log(query);

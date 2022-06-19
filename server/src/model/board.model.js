@@ -5,10 +5,10 @@ class BoardModel {
   static pushBoard(userInfo) {
     return new Promise((resolve, reject) => {
       const query =
-        "INSERT INTO boards(u_id, title, textfield, photo) VALUES(?,?,?,?,?)";
+        "INSERT INTO boards(u_id, title, textfield, photoURL) VALUES(?,?,?,?)";
       db.query(
         query,
-        [userInfo.uid, userInfo.title, userInfo.textfield, userInfo.photoURL],
+        [userInfo.u_id, userInfo.title, userInfo.textfield, userInfo.photoURL],
         (err) => {
           if (err) reject(err);
           resolve({
@@ -24,7 +24,7 @@ class BoardModel {
   // 들어오는 board의 id를 통해 게시물 상세 조회
   static getBoardInfo(bid) {
     return new Promise((resolve, reject) => {
-      const query = "SELECT * FROM boards WHERE b_id=?";
+      const query = "SELECT * FROM boards WHERE bid=?";
       db.query(query, [bid], (err, results) => {
         console.log(bid);
         if (resolve) resolve(results[0]);
@@ -35,7 +35,7 @@ class BoardModel {
 
   static Delete(id) {
     return new Promise((resolve, reject) => {
-      const query = "DELETE FROM boards WHERE b_id=?";
+      const query = "DELETE FROM boards WHERE bid=?";
       db.query(query, [id], (err, results) => {
         if (resolve)
           resolve({
