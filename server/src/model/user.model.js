@@ -34,7 +34,7 @@ class UserModel {
       const query = "INSERT INTO users(id, uname, pw, email) VALUES(?,?,?,?)";
       db.query(
         query,
-        [userInfo.id, userInfo.name, newPW, userInfo.email],
+        [userInfo.id, userInfo.uname, newPW, userInfo.email],
         (err) => {
           if (err) reject(err);
           resolve({
@@ -58,13 +58,23 @@ class UserModel {
     });
   }
 
-  static editUser(userInfo) {
+  static editUserModel(userInfo) {
     return new Promise((resolve, reject) => {
-      const query = "UPDATEf";
-      db.query(query, [id], (err, results) => {
-        if (resolve) resolve(results[0]);
-        else reject(err);
-      });
+      const newPW = bcrypt.hashSync(userInfo.pw, saltRounds);
+      const query = "UPDATE users SET uname=?, pw=?, email=?";
+      db.query(
+        query,
+        [userInfo.uname, newPW, userInfo.email],
+        (err, results) => {
+          if (resolve)
+            resolve({
+              status: "OK",
+              code: 200,
+              message: "수정을 완료했습니다.",
+            });
+          else reject(err);
+        }
+      );
     });
   }
 

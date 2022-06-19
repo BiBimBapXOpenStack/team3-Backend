@@ -42,9 +42,9 @@ class User {
     }
   }
 
-  async edit() {
+  async editUser() {
     try {
-      const response = await UserModer.editUser(this.body);
+      const response = await UserModel.editUserModel(this.body);
       return response;
     } catch (err) {
       console.error(err);

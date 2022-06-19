@@ -41,7 +41,7 @@ const post = {
     return res.json(response);
   },
   edit: async (req, res) => {
-    const user = new User(req.params.id);
+    const user = new User(req.body);
     const response = await user.editUser();
     return res.json(response);
   },
