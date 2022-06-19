@@ -86,6 +86,11 @@ class User {
         };
       }
     } catch (err) {
+      return {
+        status: "OK",
+        code: 200,
+        message: "로그인에 실패했습니다.",
+      };
       console.error(err);
     }
   }
