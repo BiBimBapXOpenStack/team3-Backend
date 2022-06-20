@@ -24,6 +24,11 @@ const post = {
     const response = await board.insertBoard();
     return res.json(response);
   },
+  edit: async (req, res) => {
+    const board = new Board(req.body);
+    const response = await board.editBoard();
+    return res.json(response);
+  },
 };
 
 module.exports = {

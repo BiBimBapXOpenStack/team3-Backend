@@ -45,6 +45,31 @@ class BoardModel {
     });
   }
 
+  static editBoardModel(boardInfo) {
+    return new Promise((resolve, reject) => {
+      const query =
+        "UPDATE boards SET title=?, textfield=?, photoURL=? WHERE bid=?";
+      db.query(
+        query,
+        [
+          boardInfo.title,
+          boardInfo.textfield,
+          boardInfo.photoURL,
+          boardInfo.bid,
+        ],
+        (err, results) => {
+          if (resolve) {
+            resolve({
+              status: "OK",
+              code: 200,
+              message: "수정을 완료했습니다.",
+            });
+          } else reject(err);
+        }
+      );
+    });
+  }
+
   static Delete(id) {
     return new Promise((resolve, reject) => {
       const query = "DELETE FROM boards WHERE bid=?";

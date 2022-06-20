@@ -35,6 +35,15 @@ class Board {
     }
   }
 
+  async editBoard() {
+    try {
+      const response = await BoardModel.editBoardModel(this.body);
+      return response;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   async deleteBoard() {
     try {
       const response = await BoardModel.Delete(this.body);

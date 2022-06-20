@@ -15,7 +15,7 @@ router.post("/users/login", userCtrl.post.login);
 router.post("/boards", boardCtrl.post.pushBoard);
 
 router.put("/users", userCtrl.post.edit);
-//router.put("/boards", boardCtrl.post.edit);
+router.put("/boards", boardCtrl.post.edit);
 
 router.delete("/users/:id", userCtrl.get.withdraw);
 router.delete("/boards/:bid", boardCtrl.get.withdraw);
