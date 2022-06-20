@@ -7,7 +7,8 @@ const boardCtrl = require("../controller/board.controller");
 router.get("/users/register/:id", userCtrl.get.validate);
 router.get("/users/logout", userCtrl.get.logout);
 router.get("/users/:id", userCtrl.get.userInfo);
-router.get("/boards/:bid", boardCtrl.get.boardinfo);
+router.get("/boards/board/:bid", boardCtrl.get.boardinfo);
+router.get("/boards/:page", boardCtrl.get.boardsinfo);
 
 router.post("/users/register", userCtrl.post.register);
 router.post("/users/login", userCtrl.post.login);
