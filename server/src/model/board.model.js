@@ -1,12 +1,12 @@
 const db = require("../config/db");
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: "../public/img/",
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}_${file.originalname}`);
-  },
-});
-const upload = multer({ storage: storage });
+// const multer = require("multer");
+// const storage = multer.diskStorage({
+//   destination: "../public/img/",
+//   filename: (req, file, cb) => {
+//     cb(null, `${Date.now()}_${file.originalname}`);
+//   },
+// });
+// const upload = multer({ storage: storage });
 
 class BoardModel {
   // 게시글 작성 푸시
