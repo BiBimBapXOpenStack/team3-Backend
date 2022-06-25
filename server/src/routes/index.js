@@ -9,6 +9,7 @@ router.get("/users/logout", userCtrl.get.logout);
 router.get("/users/:id", userCtrl.get.userInfo);
 router.get("/boards/board/:bid", boardCtrl.get.boardinfo);
 router.get("/boards/:page", boardCtrl.get.boardsinfo);
+router.get("/boards/user/:u_id", boardCtrl.get.boardsMyInfo);
 
 router.post("/users/register", userCtrl.post.register);
 router.post("/users/login", userCtrl.post.login);

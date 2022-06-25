@@ -55,6 +55,16 @@ class BoardModel {
     });
   }
 
+  static getBoardsMyInfos(u_id) {
+    return new Promise((resolve, reject) => {
+      const query = "SELECT * FROM boards WHERE u_id=?";
+      db.query(query, [u_id], (err, results) => {
+        if (err) reject(err);
+        resolve(results);
+      });
+    });
+  }
+
   static editBoardModel(boardInfo) {
     return new Promise((resolve, reject) => {
       const query =
