@@ -11,7 +11,7 @@ const db = require("../config/db");
 class BoardModel {
   // 게시글 작성 푸시
   static pushBoard(userInfo) {
-    return new Promise(upload.single("image"), (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       let imgsrc = "http://localhost:8000/public/img/" + userInfo.file.filename;
       const query =
         "INSERT INTO boards(u_id, title, textfield, photoURL) VALUES(?,?,?,?)";

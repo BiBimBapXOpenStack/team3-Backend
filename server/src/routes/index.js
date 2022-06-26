@@ -25,7 +25,11 @@ router.get("/boards/user/:u_id", boardCtrl.get.boardsMyInfo);
 
 router.post("/users/register", userCtrl.post.register);
 router.post("/users/login", userCtrl.post.login);
-router.post("/boards", upload.single("image"), boardCtrl.post.pushBoard);
+router.post("/boards/image", upload.single("image"), (req, res) => {
+  let imgsrc = "http://localhost:8000/public/img/" + req.file.filename;
+  res.json(imgsrc);
+});
+router.post("/boards", boardCtrl.post.pushBoard);
 
 router.put("/users", userCtrl.post.edit);
 router.put("/boards", boardCtrl.post.edit);
