@@ -1,23 +1,14 @@
 const db = require("../config/db");
-// const multer = require("multer");
-// const storage = multer.diskStorage({
-//   destination: "../public/img/",
-//   filename: (req, file, cb) => {
-//     cb(null, `${Date.now()}_${file.originalname}`);
-//   },
-// });
-// const upload = multer({ storage: storage });
 
 class BoardModel {
   // 게시글 작성 푸시
   static pushBoard(userInfo) {
     return new Promise((resolve, reject) => {
-      let imgsrc = "http://localhost:8000/public/img/" + userInfo.file.filename;
       const query =
         "INSERT INTO boards(u_id, title, textfield, photoURL) VALUES(?,?,?,?)";
       db.query(
         query,
-        [userInfo.u_id, userInfo.title, userInfo.textfield, imgsrc],
+        [userInfo.u_id, userInfo.title, userInfo.textfield, userInfo.photoURL],
         (err) => {
           if (err) reject(err);
           resolve({
