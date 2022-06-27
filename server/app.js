@@ -5,6 +5,7 @@ const PORT = 8000;
 const api = require("./src/routes/index");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+require("dotenv").config();
 
 let corsOpions = {
   origin: "*",
