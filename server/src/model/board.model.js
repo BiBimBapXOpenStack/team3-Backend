@@ -36,10 +36,10 @@ class BoardModel {
   // 게시물에 있는 이미지 경로 불러오기
   static getBoardImg(bid) {
     return new Promise((resolve, reject) => {
-      const query = "SELECT photoURL FROM boards WHERE bid=?";
-      db.query(query, [bid], (err, results) => {
-        console.log(results[0]);
-        if (resolve) resolve(results[0]);
+      const query = `SELECT photoURL FROM boards WHERE bid=${bid}`;
+      db.query(query, (err, results) => {
+        console.log(results);
+        if (resolve) resolve(results);
         else reject(err);
       });
     });
