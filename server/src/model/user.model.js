@@ -61,22 +61,33 @@ class UserModel {
   // 회원정보 수정 -> 아이디는 변경 못함 (프론트에서 아이디, 비밀번호, 이름, 이메일 정보 다 전달받음)
   static editUserModel(userInfo) {
     return new Promise((resolve, reject) => {
-      const newPW = bcrypt.hashSync(userInfo.pw, saltRounds);
-      const query = `UPDATE users SET uname=?, pw=?, email=? WHERE id=?`;
-      db.query(
-        query,
-        [userInfo.name, newPW, userInfo.email, userInfo.id],
-        (err, results) => {
-          if (resolve) {
-            //console.log(query);
-            resolve({
-              status: "OK",
-              code: 200,
-              message: "수정을 완료했습니다.",
-            });
-          } else reject(err);
-        }
-      );
+      const { id, pw } = await UserModel.getUserInfo(userInfo.id);
+      const isEqualPW = bcrypt.compareSync(userInfo.pw, pw);
+      if (isEqualPW) {
+        const newPW = bcrypt.hashSync(userInfo.pwChange, saltRounds);
+        const query = `UPDATE users SET uname=?, pw=?, email=? WHERE id=?`;
+        db.query(
+          query,
+          [userInfo.name, newPW, userInfo.email, userInfo.id],
+          (err, results) => {
+            if (resolve) {
+              //console.log(query);
+              resolve({
+                status: "OK",
+                code: 200,
+                message: "수정을 완료했습니다.",
+              });
+            } else reject(err);
+          }
+        );
+      } else {
+        resolve({
+            status: "Bad Request",
+            code: 400,
+            message: "비밀번호가 틀렸습니다."
+        });
+      }
+      
     });
   }
 
