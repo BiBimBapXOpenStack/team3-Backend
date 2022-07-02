@@ -56,7 +56,7 @@ class User {
     try {
       const { id, pw } = await UserModel.getUserInfo(this.body.body.id);
       const jwtToken = await jwt.sign(id);
-      console.log(id, pw);
+      //console.log(id, pw);
       console.log(this.body.body.id, this.body.body.pw);
       if (id) {
         if (id === this.body.body.id) {
