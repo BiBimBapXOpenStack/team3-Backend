@@ -21,13 +21,25 @@ class BoardModel {
     });
   }
 
-  // 들어오는 board의 id를 통해 게시물 상세 조회
+  // 들어오는 board의 id를 통해 게시물 상세 조회 (이미지 제외)
   static getBoardInfo(bid) {
     return new Promise((resolve, reject) => {
       const query = "SELECT * FROM boards WHERE bid=?";
       db.query(query, [bid], (err, results) => {
         console.log(bid);
         if (resolve) resolve(results[0]);
+        else reject(err);
+      });
+    });
+  }
+
+  // 게시물에 있는 이미지 경로 불러오기
+  static getBoardImg(bid) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT photoURL FROM boards WHERE bid=${bid}`;
+      db.query(query, (err, results) => {
+        console.log(results);
+        if (resolve) resolve(results);
         else reject(err);
       });
     });

@@ -49,9 +49,10 @@ class UserModel {
 
   // 로그인 시 들어오는 회원 id를 통해 회원의 정보를 DB에서 가져오기
   static getUserInfo(id) {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       const query = "SELECT * FROM users WHERE id=?";
       db.query(query, [id], (err, results) => {
+        console.log(results[0]);
         if (resolve) resolve(results[0]);
         else reject(err);
       });
@@ -60,9 +61,10 @@ class UserModel {
 
   // 회원정보 수정 -> 아이디는 변경 못함 (프론트에서 아이디, 비밀번호, 이름, 이메일 정보 다 전달받음)
   static editUserModel(userInfo) {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       const { id, pw } = await UserModel.getUserInfo(userInfo.id);
-      const isEqualPW = bcrypt.compareSync(userInfo.pw, pw);
+      console.log(pw);
+      const isEqualPW = await bcrypt.compareSync(userInfo.pw, pw);
       if (isEqualPW) {
         const newPW = bcrypt.hashSync(userInfo.pwChange, saltRounds);
         const query = `UPDATE users SET uname=?, pw=?, email=? WHERE id=?`;
@@ -82,12 +84,11 @@ class UserModel {
         );
       } else {
         resolve({
-            status: "Bad Request",
-            code: 400,
-            message: "비밀번호가 틀렸습니다."
+          status: "Bad Request",
+          code: 400,
+          message: "비밀번호가 틀렸습니다.",
         });
       }
-      
     });
   }
 

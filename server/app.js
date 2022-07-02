@@ -11,6 +11,7 @@ let corsOpions = {
   origin: "*",
   credential: true,
 };
+
 app.use(cors(corsOpions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
