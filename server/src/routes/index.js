@@ -27,7 +27,7 @@ router.get("/boards/user/:u_id", boardCtrl.get.boardsMyInfo);
 router.post("/users/register", userCtrl.post.register);
 router.post("/users/login", userCtrl.post.login);
 router.post("/boards/image", upload.single("file"), (req, res) => {
-  let imgsrc = "../../../public/img/" + req.file.filename;
+  let imgsrc = "../public/img/" + req.file.filename;
   res.json(imgsrc);
 });
 router.post("/boards", boardCtrl.post.pushBoard);
