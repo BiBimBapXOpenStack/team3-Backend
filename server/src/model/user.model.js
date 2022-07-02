@@ -52,7 +52,7 @@ class UserModel {
     return new Promise(async (resolve, reject) => {
       const query = "SELECT * FROM users WHERE id=?";
       db.query(query, [id], (err, results) => {
-        console.log(results[0]);
+        //console.log(results[0]);
         if (resolve) resolve(results[0]);
         else reject(err);
       });

@@ -10,7 +10,7 @@ const get = {
   boardImg: async (req, res) => {
     const board = new Board(req.params.bid);
     const response = await board.getImg();
-    console.log(response.photoURL);
+    //console.log(response.photoURL);
     fs.readFile(response.photoURL, (err, data) => {
       res.writeHead(200, { "Content-Type": "image/png" });
       res.write(data);

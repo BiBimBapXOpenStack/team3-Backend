@@ -38,7 +38,7 @@ class BoardModel {
     return new Promise((resolve, reject) => {
       const query = `SELECT photoURL FROM boards WHERE bid=${bid}`;
       db.query(query, (err, results) => {
-        console.log(results[0]);
+        console.log(aa);
         if (resolve) resolve(results[0]);
         else reject(err);
       });
