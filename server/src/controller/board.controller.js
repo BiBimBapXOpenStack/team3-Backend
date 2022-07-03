@@ -20,11 +20,13 @@ const get = {
   boardsinfo: async (req, res) => {
     const board = new Board(req.params.page);
     const response = await board.getInfos();
+    console.log(`${req.params.page}페이지 게시물들 출력 요청`);
     return res.json(response);
   },
   boardsMyInfo: async (req, res) => {
     const board = new Board(req.params.u_id);
     const response = await board.getMyInfos();
+    console.log(`${req.params.u_id} 유저 게시물들 출력 요청`);
     return res.json(response);
   },
   withdraw: async (req, res) => {
@@ -38,11 +40,13 @@ const post = {
   pushBoard: async (req, res) => {
     const board = new Board(req.body);
     const response = await board.insertBoard();
+    console.log(`게시물 작성 요청`);
     return res.json(response);
   },
   edit: async (req, res) => {
     const board = new Board(req.body);
     const response = await board.editBoard();
+    console.log(`게시물 수정 요청`);
     return res.json(response);
   },
 };
