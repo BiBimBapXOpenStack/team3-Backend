@@ -33,7 +33,7 @@ jobs:
         with:
           status: ${{ job.status }}
           author_name: Sloth Backend - dev
-          fields: repo,message,job,took,eventName,workflow # action,eventName,ref,workflow,job,took 추가할 수 있음
+          fields: author,repo,message,job,took,eventName,workflow # action,eventName,ref,workflow,job,took 추가할 수 있음
           mention: here
           if_mention: failure,cancelled
         env:
