@@ -36,4 +36,5 @@ jobs:
             sudo apt-get install git -y
             git clone -b develop https://github.com/BiBimBapXOpenStack/team3-Backend.git
             cd team3-Backend/bin
+            
             bash setup.sh ${{ secrets.DB_HOST }} ${{ secrets.DB_USER }} ${{ secrets.DB_PASSWORD }} ${{ secrets.DB_DATABASE }} ${{ secrets.DB_PORT }}
