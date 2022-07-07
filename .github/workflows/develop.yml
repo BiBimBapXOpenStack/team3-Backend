@@ -27,6 +27,11 @@ jobs:
             git reset --hard
             git fetch
             git pull
+            export HOST=${{ secrets.DB_HOST }}
+            export USER=${{ secrets.DB_USER }}
+            export DATABASE=${{ secrets.DB_DATABASE }}
+            export PASSWORD=${{ secrets.DB_PASSWORD }}
+            export PORT=${{ secrets.DB_PORT }}
     
       - name: action-slack
         uses: 8398a7/action-slack@v3
