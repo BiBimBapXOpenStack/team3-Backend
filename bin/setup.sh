@@ -27,7 +27,7 @@ echo "==========================================="
 cd /etc/nginx/sites-enabled
 sudo rm default
 cd ~/team3-Backend/bin/config
-sudo sed -i 's@SERVER_URL@'"$6"'@g' team3-Backend.conf
+sudo sed -i team3-Backend.conf
 sudo cp team3-Backend.conf /etc/nginx/sites-enabled
 echo "*** sites-enabled/team3-Backend.conf ***"
 sudo cat /etc/nginx/sites-enabled/team3-Backend.conf
