@@ -66,6 +66,8 @@ exports.putObjectToToast = async (req, res, next) => {
     if (fs.existsSync(req.file.path)) {
       let file = fs.createReadStream(req.file.path);
       let result = await axios.put(url, file, putHeader(token, req));
+      console.log(result);
+      return url;
     }
   } catch (error) {
     console.log(error);
