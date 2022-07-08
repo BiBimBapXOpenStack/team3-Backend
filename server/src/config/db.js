@@ -3,12 +3,12 @@ const mysql = require("mysql");
 
 const db = mysql.createConnection({
   host: process.env.HOST,
-  port: process.env.PORT,
-  user: process.env.USER,
+  port: 10000,
+  user: "team3",
   password: process.env.PASSWORD,
-  database: process.env.DATABASE,
+  database: "bbb3",
 });
-console.log(process.env.USER);
+//console.log(process.env.USER);
 
 db.connect((err) => {
   if (err) return console.error("error" + err.message);

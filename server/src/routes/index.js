@@ -1,17 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
-const path = require("path");
-let storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "../public/img");
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, path.basename(file.originalname, ext) + "-" + Date.now() + ext);
-  },
-});
-let upload = multer({ storage: storage });
+const uploadOS = require("../module/uploadOS");
 
 const userCtrl = require("../controller/user.controller");
 const boardCtrl = require("../controller/board.controller");
@@ -26,7 +15,8 @@ router.get("/boards/user/:u_id", boardCtrl.get.boardsMyInfo);
 
 router.post("/users/register", userCtrl.post.register);
 router.post("/users/login", userCtrl.post.login);
-router.post("/boards/image", upload.single("file"), (req, res) => {
+router.post("/boards/image", uploadOS.single("file"), (req, res) => {
+  console.log("upload file to Object Storage : ", req.file.filename);
   let imgsrc = "../public/img/" + req.file.filename;
   res.json(imgsrc);
 });

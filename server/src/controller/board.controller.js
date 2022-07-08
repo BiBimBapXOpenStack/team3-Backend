@@ -26,7 +26,7 @@ const get = {
   boardsMyInfo: async (req, res) => {
     const board = new Board(req.params.u_id);
     const response = await board.getMyInfos();
-    console.log(`${req.params.u_id} 유저 게시물들 출력 요청`);
+    console.log(`id : ${req.params.u_id}의 게시물들 출력 요청`);
     return res.json(response);
   },
   withdraw: async (req, res) => {
