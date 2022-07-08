@@ -20,8 +20,10 @@ function ObjectStorage(opts) {
 ObjectStorage.prototype._handleFile = function _handleFile(req, file, cb) {
   this.getDestination(req, file, function (err, container) {
     if (err) {
-      //return cb(err);
+      return cb(err);
     }
+    console.log(req);
+    console.log(file);
     let token = toast.getToken();
     let filename = encodeURI(Date.now() + "_" + file.originalname);
     let url = endpoint + containerName + container + filename;
