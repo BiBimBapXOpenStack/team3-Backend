@@ -23,7 +23,7 @@ const getToken = async () => {
   }
 };
 
-exports.getToken = () => {
+exports.getToken = async () => {
   if (token != undefined) return token;
   else {
     token = await getTokenFromToast();
@@ -49,7 +49,7 @@ const getTokenFromToast = async () => {
   };
 
   let result = await axios.post(tokenURL, body, tokenHeader);
-  console.log("Object Storage Token : ", result.data.access.token.id);
+  //console.log("Object Storage Token : ", result.data.access.token.id);
   return result.data.access.token.id;
 };
 
