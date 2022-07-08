@@ -15,10 +15,10 @@ const authHeader = (token) => {
 };
 
 const getToken = async () => {
-  console.log("get token : ", token);
   if (token != null) return token;
   else {
     token = await getTokenFromToast();
+    console.log("get token : ", token);
     return token;
   }
 };
@@ -28,7 +28,8 @@ exports.getToken = () => {
 };
 
 const getTokenFromToast = async () => {
-  let tokenURL = "https://api-identity.infrastructure.cloud.toast.com/v2.0";
+  let tokenURL =
+    "https://api-identity.infrastructure.cloud.toast.com/v2.0/tokens";
   let tokenHeader = {
     headers: { "Content-Type": "application/json" },
   };
