@@ -23,7 +23,7 @@ ObjectStorage.prototype._handleFile = function _handleFile(req, file, cb) {
       //return cb(err);
     }
     let token = toast.getToken();
-    console.log("token : ", token);
+    console.log("auth token : ", token);
     let filename = encodeURI(Date.now() + "_" + file.originalname);
     let url = endpoint + containerName + container + filename;
     //console.log("file stream : ", file.stream);
