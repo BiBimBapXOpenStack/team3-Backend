@@ -22,8 +22,7 @@ ObjectStorage.prototype._handleFile = function _handleFile(req, file, cb) {
     if (err) {
       return cb(err);
     }
-    console.log(req);
-    console.log(file);
+    console.log(file.originalname);
     let token = toast.getToken();
     let filename = encodeURI(Date.now() + "_" + file.originalname);
     let url = endpoint + containerName + container + filename;
@@ -36,7 +35,7 @@ ObjectStorage.prototype._handleFile = function _handleFile(req, file, cb) {
         });
       })
       .catch((err) => {
-        //console.log(err);
+        console.log(err);
       });
   });
 };
