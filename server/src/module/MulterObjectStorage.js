@@ -26,7 +26,7 @@ ObjectStorage.prototype._handleFile = function _handleFile(req, file, cb) {
     console.log("token : ", token);
     let filename = encodeURI(Date.now() + "_" + file.originalname);
     let url = endpoint + containerName + container + filename;
-    console.log("file stream : ", file.stream);
+    //console.log("file stream : ", file.stream);
     axios
       .put(url, file.stream, putHeader(token, file))
       .then((response) => {

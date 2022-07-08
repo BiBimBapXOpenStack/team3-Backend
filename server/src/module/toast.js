@@ -15,7 +15,7 @@ const authHeader = (token) => {
 };
 
 const getToken = async () => {
-  if (token != null) return token;
+  if (token != undefined) return token;
   else {
     token = await getTokenFromToast();
     console.log("get token : ", token);
@@ -24,7 +24,12 @@ const getToken = async () => {
 };
 
 exports.getToken = () => {
-  getToken();
+  if (token != undefined) return token;
+  else {
+    token = await getTokenFromToast();
+    console.log("get token : ", token);
+    return token;
+  }
 };
 
 const getTokenFromToast = async () => {
