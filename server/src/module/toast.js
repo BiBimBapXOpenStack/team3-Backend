@@ -15,7 +15,7 @@ const authHeader = (token) => {
 };
 
 const getToken = async () => {
-  console.log("get token : ", token);
+  //console.log("get token : ", token);
   if (token != null) return token;
   else {
     token = await getTokenFromToast();
@@ -43,7 +43,7 @@ const getTokenFromToast = async () => {
   };
 
   let result = await axios.post(tokenURL, body, tokenHeader);
-  console.log("Object Storage Token : ", result.data.access.token.id);
+  //console.log("Object Storage Token : ", result.data.access.token.id);
   return result.data.access.token.id;
 };
 
@@ -66,7 +66,7 @@ exports.putObjectToToast = async (req, res, next) => {
     if (fs.existsSync(req.file.path)) {
       let file = fs.createReadStream(req.file.path);
       let result = await axios.put(url, file, putHeader(token, req));
-      console.log(result);
+      //console.log(result);
       return url;
     }
   } catch (error) {
