@@ -23,16 +23,13 @@ jobs:
           host: ${{ secrets.DEV_HOST }}
           username: ${{ secrets.DEV_USER }}
           script: |
-            cd team3-Backend
+            cd ~/team3-Backend
             git reset --hard
             git fetch
             git pull
-            export HOST=${{ secrets.DB_HOST }}
-            export USER=${{ secrets.DB_USER }}
-            export DATABASE=${{ secrets.DB_DATABASE }}
-            export PASSWORD=${{ secrets.DB_PASSWORD }}
-            export PORT=${{ secrets.DB_PORT }}
-    
+            cd ~/team3-Backend/server
+            npm install
+
       - name: action-slack
         uses: 8398a7/action-slack@v3
         with:
