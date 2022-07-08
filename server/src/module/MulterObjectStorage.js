@@ -32,7 +32,7 @@ ObjectStorage.prototype._handleFile = function _handleFile(req, file, cb) {
       .then((response) => {
         console.log("put file success");
         cb(null, {
-          filename: filename,
+          filename: url,
         });
       })
       .catch((err) => {
