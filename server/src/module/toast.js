@@ -23,10 +23,10 @@ const getToken = async () => {
   }
 };
 
-exports.getToken = () => {
+exports.getToken = async () => {
   if (token != null) return token;
   else {
-    token = getTokenFromToast();
+    token = await getTokenFromToast();
     console.log("exports get token : ", token);
     return token;
   }

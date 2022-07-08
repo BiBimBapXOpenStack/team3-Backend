@@ -18,16 +18,16 @@ function ObjectStorage(opts) {
 }
 
 ObjectStorage.prototype._handleFile = function _handleFile(req, file, cb) {
-  this.getDestination(req, file, function (err, container) {
+  this.getDestination(req, file, async function (err, container) {
     if (err) {
       //return cb(err);
     }
-    let token = toast.getToken();
+    let token = await toast.getToken();
     console.log("auth token : ", token);
     let filename = encodeURI(Date.now() + "_" + file.originalname);
     let url = endpoint + containerName + container + filename;
     //console.log("file stream : ", file.stream);
-    axios
+    await axios
       .put(url, file.stream, putHeader(token, file))
       .then((response) => {
         console.log("put file success");
