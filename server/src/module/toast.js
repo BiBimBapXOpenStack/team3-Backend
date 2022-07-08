@@ -23,10 +23,10 @@ const getToken = async () => {
   }
 };
 
-exports.getToken = async () => {
+exports.getToken = () => {
   if (token != undefined) return token;
   else {
-    token = await getTokenFromToast();
+    token = getTokenFromToast();
     console.log("get token : ", token);
     return token;
   }
@@ -53,12 +53,12 @@ const getTokenFromToast = async () => {
   return result.data.access.token.id;
 };
 
-exports.getListFromToast = async () => {
-  let token = await getToken();
+exports.getListFromToast = () => {
+  let token = getToken();
   if (token != null) {
     let getContainerURL = endpoint + containerName;
     // console.log(authHeader(token));
-    let result = await axios.get(getContainerURL, authHeader(token));
+    let result = axios.get(getContainerURL, authHeader(token));
     return result.data;
   } else {
     return "nothing";

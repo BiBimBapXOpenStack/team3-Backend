@@ -38,10 +38,10 @@ echo "4. Build"
 echo "==========================================="
 cd ~/team3-Backend/server
 sudo npm install
-sudo npm install pm2 -g
-pm2 start app.js
+sudo npm install nodemon -g
 
 echo "==========================================="
 echo "5. Nginx restart"
 echo "==========================================="
 sudo systemctl start nginx
+nodemon app.js
