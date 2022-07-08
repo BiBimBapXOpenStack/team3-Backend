@@ -18,7 +18,7 @@ const getToken = async () => {
   if (token != null) return token;
   else {
     token = await getTokenFromToast();
-    console.log("get token : ", token);
+    //console.log("get token : ", token);
     return token;
   }
 };
@@ -27,7 +27,7 @@ exports.getToken = async () => {
   if (token != null) return token;
   else {
     token = await getTokenFromToast();
-    console.log("exports get token : ", token);
+    //console.log("exports get token : ", token);
     return token;
   }
 };
