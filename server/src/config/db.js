@@ -8,7 +8,7 @@ const db = mysql.createConnection({
   password: process.env.PASSWORD,
   database: "bbb3",
 });
-//console.log(process.env.USER);
+console.log(process.env.USER);
 
 db.connect((err) => {
   if (err) return console.error("error" + err.message);
