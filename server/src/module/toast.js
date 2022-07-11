@@ -2,8 +2,7 @@ const axios = require("axios");
 const fs = require("fs");
 
 let token;
-const endpoint =
-  "https://api-storage.cloud.toast.com/v1/AUTH_35682dae0076479ab712dbb328468535";
+const endpoint = process.env.ENDPOINT;
 const containerName = "/team3";
 
 const authHeader = (token) => {
@@ -40,10 +39,10 @@ const getTokenFromToast = async () => {
   };
   let body = {
     auth: {
-      tenantId: "35682dae0076479ab712dbb328468535",
+      tenantId: process.env.TID,
       passwordCredentials: {
-        username: "khsofficial1213@gmail.com",
-        password: "hs1213",
+        username: process.env.UNAME,
+        password: process.env.OSPW,
       },
     },
   };
