@@ -11,7 +11,7 @@ const db = mysql.createConnection({
 console.log(process.env.USER);
 
 db.connect((err) => {
-  if (err) return console.error("error" + err.message);
+  if (err) return console.error("ERR : " + err.message);
 
   let createTableUsers = `CREATE TABLE IF NOT EXISTS users(
     id VARCHAR(30) PRIMARY KEY,

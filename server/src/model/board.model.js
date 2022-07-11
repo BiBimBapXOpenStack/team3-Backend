@@ -48,10 +48,10 @@ class BoardModel {
   // 페이지 입력에 맞게 5개씩 출력
   static getBoardInfos(page) {
     return new Promise((resolve, reject) => {
-      // const query =
-      //   "SELECT * FROM boards ORDER BY enter_date DESC limit 5 OFFSET ?";
-      const query = "SELECT * FROM boards ORDER BY enter_date DESC";
-      db.query(query, (err, results) => {
+      const query =
+        "SELECT * FROM boards ORDER BY enter_date DESC limit 5 OFFSET ?";
+      //const query = "SELECT * FROM boards ORDER BY enter_date DESC";
+      db.query(query, [(page - 1) * 5], (err, results) => {
         if (err) reject(err);
         resolve(results);
       });
