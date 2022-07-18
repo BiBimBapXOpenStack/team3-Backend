@@ -3,7 +3,7 @@ const winstonDaily = require("winston-daily-rotate-file");
 require("moment-timezone");
 const moment = require("moment");
 
-const { combine, timestamp, printf, colorsize } = winston.format;
+const { combine, timestamp, printf, colorize } = winston.format;
 
 const logDir = "logs"; // logs 디렉토리 하위에 로그 파일 저장
 
@@ -28,7 +28,7 @@ const logFormat = printf((info) => {
  */
 
 const logger = winston.createLogger({
-  format: combine(logFormat, colorsize({ all: true })),
+  format: combine(logFormat, colorize({ all: true })),
   transports: [
     new winstonDaily({
       level: "info",
