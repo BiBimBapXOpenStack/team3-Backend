@@ -9,8 +9,7 @@ const putHeader = (token, file) => {
     },
   };
 };
-const endpoint =
-  "https://api-storage.cloud.toast.com/v1/AUTH_35682dae0076479ab712dbb328468535";
+const endpoint = process.env.ENDPOINT;
 const containerName = "/team3";
 
 function ObjectStorage(opts) {

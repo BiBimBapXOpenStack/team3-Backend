@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const logger = require("./src/module/winston");
 global.logger || (global.logger = require("./src/module/winston"));
+const morgan = require("./src/middleware/myMorgan");
 require("dotenv").config();
 
 let corsOpions = {
@@ -27,6 +28,7 @@ app.use(
     cookie: { expire: 60 * 60 * 24 },
   })
 );
+app.use(morgan);
 app.use("/", api);
 app.use((err, req, res, next) => {
   logger.Error(err.stack);
