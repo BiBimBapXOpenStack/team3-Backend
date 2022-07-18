@@ -58,13 +58,12 @@ class User {
       const { id, pw } = await UserModel.getUserInfo(this.body.body.id);
       const jwtToken = await jwt.sign(id);
       //console.log(id, pw);
-      console.log(this.body.body.id, this.body.body.pw);
+      //console.log(this.body.body.id, this.body.body.pw);
       if (id) {
         if (id === this.body.body.id) {
           const isEqualPW = bcrypt.compareSync(this.body.body.pw, pw);
-          console.log(isEqualPW);
           if (isEqualPW) {
-            logger.info("ID and PASSWORD EQUAL");
+            logger.info(`LOGIN SUCCESS. (ID : ${id})`);
             return {
               status: "OK",
               code: 200,
