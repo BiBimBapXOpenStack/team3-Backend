@@ -5,7 +5,7 @@ class Board {
     this.body = body;
   }
 
-  // 게시물 하나에 대한 자세한 정보 (이미지 제외)
+  // 게시물 하나에 대한 자세한 정보
   async getInfo() {
     try {
       //console.log(this.body);

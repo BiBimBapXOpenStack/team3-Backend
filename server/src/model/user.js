@@ -1,6 +1,7 @@
 const UserModel = require("./user.model");
-const jwt = require("../module/jwt");
+const jwt = require("../module/jwt").normal;
 const bcrypt = require("bcrypt");
+const logger = require("../module/winston");
 
 class User {
   constructor(body) {
@@ -63,6 +64,7 @@ class User {
           const isEqualPW = bcrypt.compareSync(this.body.body.pw, pw);
           console.log(isEqualPW);
           if (isEqualPW) {
+            logger.info("ID and PASSWORD EQUAL");
             return {
               status: "OK",
               code: 200,
@@ -70,6 +72,7 @@ class User {
               id: this.body.body.id,
             };
           } else {
+            logger.error("PASSWORD NOT EQUAL");
             return {
               status: "OK",
               code: 200,
@@ -77,6 +80,7 @@ class User {
             };
           }
         } else {
+          logger.error("ID NOT EQUAL");
           return {
             status: "OK",
             code: 200,
@@ -84,6 +88,7 @@ class User {
           };
         }
       } else {
+        logger.error("ID NOT FOUND");
         return {
           status: "OK",
           code: 200,
@@ -91,12 +96,12 @@ class User {
         };
       }
     } catch (err) {
+      logger.error(err);
       return {
         status: "OK",
         code: 200,
         message: "로그인에 실패했습니다.",
       };
-      console.error(err);
     }
   }
 }

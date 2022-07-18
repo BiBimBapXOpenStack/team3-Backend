@@ -1,4 +1,5 @@
 const User = require("../model/user");
+const logger = require("../module/winston");
 
 const get = {
   validate: async (req, res) => {
@@ -10,11 +11,13 @@ const get = {
   userInfo: async (req, res) => {
     const user = new User(req.params.id);
     const response = await user.getUserInfo();
+    logger.info(JSON.stringify(req.params.id));
     return res.json(response);
   },
   logout: async (req, res) => {
     const user = new User(req.params.id);
     const response = await user.idCheck();
+    logger.info(JSON.stringify(req.params.id));
     console.log(`로그아웃 요청`);
     if (response.status === "OK") {
       return res.json({ status: "OK", code: 200 });
@@ -34,12 +37,14 @@ const post = {
   register: async (req, res) => {
     const user = new User(req.body);
     const response = await user.register();
+    logger.info(JSON.stringify(req.body));
     console.log(`회원가입 요청`);
     return res.json(response);
   },
   login: async (req, res) => {
     const user = new User(req);
     const response = await user.login();
+    logger.info(JSON.stringify(req));
     res.cookie("bbb3", response.token);
     console.log(`로그인 요청`);
     return res.json(response);

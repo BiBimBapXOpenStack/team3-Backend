@@ -5,6 +5,8 @@ const PORT = 8000;
 const api = require("./src/routes/index");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const logger = require("./src/module/winston");
+global.logger || (global.logger = require("./src/module/winston"));
 require("dotenv").config();
 
 let corsOpions = {
@@ -15,7 +17,6 @@ let corsOpions = {
 app.use(cors(corsOpions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
 app.use(cookieParser());
 app.use(
   session({
@@ -27,6 +28,10 @@ app.use(
   })
 );
 app.use("/", api);
+app.use((err, req, res, next) => {
+  logger.Error(err.stack);
+  res.json({ result: "failed", message: error.message });
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);

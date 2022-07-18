@@ -1,5 +1,6 @@
 const Board = require("../model/board");
 const fs = require("fs");
+const logger = require("../module/winston");
 
 const get = {
   boardinfo: async (req, res) => {
@@ -39,6 +40,7 @@ const get = {
 const post = {
   pushBoard: async (req, res) => {
     const board = new Board(req.body);
+    logger.info(JSON.stringify(req.body));
     const response = await board.insertBoard();
     console.log(`게시물 작성 요청`);
     return res.json(response);
