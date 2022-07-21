@@ -46,7 +46,6 @@ const post = {
     const user = new User(req.body);
     const response = await user.login();
     res.cookie("bbb3", response.token);
-    logger.info(JSON.stringify(req.body));
     return res.json(response);
   },
   edit: async (req, res) => {

@@ -28,7 +28,7 @@ app.use(
     cookie: { expire: 60 * 60 * 24 },
   })
 );
-app.use(morgan);
+//app.use(morgan);
 app.use("/", api);
 app.use((err, req, res, next) => {
   logger.Error(err.stack);
