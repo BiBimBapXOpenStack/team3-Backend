@@ -17,7 +17,7 @@ const get = {
     const user = new User(req.params.id);
     const response = await user.idCheck();
     console.log(`로그아웃 요청 ${req.params.id}`);
-    if (response.status === "OK") {
+    if (response.status === "conflict") {
       console.log(`ok`);
       return res.json({ status: "OK", code: 200 });
     } else {

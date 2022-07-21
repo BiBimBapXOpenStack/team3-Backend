@@ -7,7 +7,7 @@ const boardCtrl = require("../controller/board.controller");
 const logger = require("../module/winston");
 
 router.get("/users/register/:id", userCtrl.get.validate);
-router.get("/users/logout", userCtrl.get.logout);
+router.get("/users/logout/:id", userCtrl.get.logout);
 router.get("/users/:id", userCtrl.get.userInfo);
 router.get("/boards/board/:bid", boardCtrl.get.boardinfo);
 router.get("/board/image/:bid", boardCtrl.get.boardImg);
