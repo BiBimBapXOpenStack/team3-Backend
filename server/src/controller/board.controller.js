@@ -31,7 +31,7 @@ const get = {
   boardsMyInfo: async (req, res) => {
     const board = new Board(req.params.u_id);
     const response = await board.getMyInfos();
-    console.log(`id : ${req.params.u_id}의 게시물들 출력 요청`);
+    //console.log(`id : ${req.params.u_id}의 게시물들 출력 요청`);
     return res.json(response);
   },
   // 게시글 삭제
@@ -53,7 +53,10 @@ const post = {
   edit: async (req, res) => {
     const board = new Board(req.body);
     const response = await board.editBoard();
-    console.log(`게시물 수정 요청`);
+    logger.info(
+      `SUCCESS EDIT BOARD (BOARD ID : ${req.body.bid}, USER ID : ${req.body.u_id})`
+    );
+    //console.log(`게시물 수정 요청`);
     return res.json(response);
   },
 };
