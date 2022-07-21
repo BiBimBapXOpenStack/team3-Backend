@@ -18,8 +18,10 @@ const get = {
     const response = await user.idCheck();
     console.log(`로그아웃 요청 ${req.params.id}`);
     if (response.status === "OK") {
+      console.log(`ok`);
       return res.json({ status: "OK", code: 200 });
     } else {
+      console.log(`no ok`);
       return res.json({ status: "Bad Request", code: 400 });
     }
   },
