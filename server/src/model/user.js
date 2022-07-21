@@ -63,7 +63,7 @@ class User {
         if (id === this.body.body.id) {
           const isEqualPW = bcrypt.compareSync(this.body.body.pw, pw);
           if (isEqualPW) {
-            logger.info(`LOGIN SUCCESS. (ID : ${id})`);
+            logger.info(`LOGIN SUCCESS. (ID : ${this.body.body.id})`);
             return {
               status: "OK",
               code: 200,

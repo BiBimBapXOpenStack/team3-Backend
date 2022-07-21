@@ -44,7 +44,6 @@ const post = {
   login: async (req, res) => {
     const user = new User(req);
     const response = await user.login();
-    logger.info(JSON.stringify(req));
     res.cookie("bbb3", response.token);
     console.log(`로그인 요청`);
     return res.json(response);

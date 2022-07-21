@@ -63,7 +63,7 @@ class UserModel {
   static editUserModel(userInfo) {
     return new Promise(async (resolve, reject) => {
       const { id, pw } = await UserModel.getUserInfo(userInfo.id);
-      console.log(pw);
+      //console.log(pw);
       const isEqualPW = await bcrypt.compareSync(userInfo.pw, pw);
       if (isEqualPW) {
         const newPW = bcrypt.hashSync(userInfo.pwChange, saltRounds);
