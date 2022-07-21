@@ -51,6 +51,9 @@ const post = {
   edit: async (req, res) => {
     const user = new User(req.body);
     const response = await user.editUser();
+    logger.info(
+      `SUCCESS EDIT USER (ID : ${req.body.id}, EMAIL : ${req.body.email})`
+    );
     return res.json(response);
   },
 };
