@@ -37,7 +37,9 @@ const post = {
   register: async (req, res) => {
     const user = new User(req.body);
     const response = await user.register();
-    //logger.info(JSON.stringify(req.body));
+    logger.info(
+      `SUCCESS REGISTER (ID : ${req.body.id}, EMAIL : ${req.body.email})`
+    );
     return res.json(response);
   },
   login: async (req, res) => {

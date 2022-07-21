@@ -4,6 +4,7 @@ const uploadOS = require("../module/uploadOS");
 
 const userCtrl = require("../controller/user.controller");
 const boardCtrl = require("../controller/board.controller");
+const logger = require("../module/winston");
 
 router.get("/users/register/:id", userCtrl.get.validate);
 router.get("/users/logout", userCtrl.get.logout);
@@ -16,7 +17,7 @@ router.get("/boards/user/:u_id", boardCtrl.get.boardsMyInfo);
 router.post("/users/register", userCtrl.post.register);
 router.post("/users/login", userCtrl.post.login);
 router.post("/boards/image", uploadOS.single("file"), (req, res) => {
-  console.log("upload file to Object Storage : ", req.file.filename);
+  logger.info(`UPLOAD FILE TO OBS : ${req.file.filename}`);
   res.json(req.file.filename);
 });
 router.post("/boards", boardCtrl.post.pushBoard);

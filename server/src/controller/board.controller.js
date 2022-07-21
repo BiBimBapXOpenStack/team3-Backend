@@ -46,8 +46,8 @@ const post = {
   pushBoard: async (req, res) => {
     const board = new Board(req.body);
     const response = await board.insertBoard();
-    //logger.info(JSON.stringify(req.body));
-    console.log(`게시물 작성 요청`);
+    logger.info(`SUCCESS PUSH BOARD (BOARD ID : , USER ID : ${req.body.u_id})`);
+    //console.log(`게시물 작성 요청`);
     return res.json(response);
   },
   edit: async (req, res) => {
