@@ -37,21 +37,18 @@ const post = {
   register: async (req, res) => {
     const user = new User(req.body);
     const response = await user.register();
-    logger.info(JSON.stringify(req.body));
-    console.log(`회원가입 요청`);
+    //logger.info(JSON.stringify(req.body));
     return res.json(response);
   },
   login: async (req, res) => {
-    const user = new User(req);
+    const user = new User(req.body);
     const response = await user.login();
     res.cookie("bbb3", response.token);
-    console.log(`로그인 요청`);
     return res.json(response);
   },
   edit: async (req, res) => {
     const user = new User(req.body);
     const response = await user.editUser();
-    console.log(`회원정보 수정 요청`);
     return res.json(response);
   },
 };
