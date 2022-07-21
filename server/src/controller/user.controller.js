@@ -11,14 +11,12 @@ const get = {
   userInfo: async (req, res) => {
     const user = new User(req.params.id);
     const response = await user.getUserInfo();
-    logger.info(JSON.stringify(req.params.id));
     return res.json(response);
   },
   logout: async (req, res) => {
     const user = new User(req.params.id);
     const response = await user.idCheck();
-    logger.info(JSON.stringify(req.params.id));
-    console.log(`로그아웃 요청`);
+    console.log(`로그아웃 요청 ${req.params.id}`);
     if (response.status === "OK") {
       return res.json({ status: "OK", code: 200 });
     } else {
