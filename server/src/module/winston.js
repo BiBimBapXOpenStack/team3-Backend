@@ -28,7 +28,8 @@ const logFormat = printf((info) => {
  */
 
 const logger = winston.createLogger({
-  format: combine(logFormat, colorize({ all: true })),
+  format: logFormat,
+  colorize: true,
   transports: [
     new winstonDaily({
       level: "info",
