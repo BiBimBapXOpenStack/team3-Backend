@@ -27,6 +27,13 @@ const get = {
     //console.log(`${req.params.page}페이지 게시물들 출력 요청`);
     return res.json(response);
   },
+  // 게시물 전체 목록
+  allboardsinfo: async (req, res) => {
+    const board = new Board();
+    const response = await board.getAllInfos();
+    logger.info(`ALL BOARDS`);
+    return res.json(response);
+  },
   // 한 유저가 쓴 게시글 목록들
   boardsMyInfo: async (req, res) => {
     const board = new Board(req.params.u_id);

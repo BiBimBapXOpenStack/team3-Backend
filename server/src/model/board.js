@@ -34,6 +34,15 @@ class Board {
     }
   }
 
+  async getAllInfos() {
+    try {
+      const boardsInfo = await BoardModel.getAllBoard();
+      return boardsInfo;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   // 내가 쓴 게시물 목록들 출력
   async getMyInfos() {
     try {

@@ -12,6 +12,7 @@ router.get("/users/:id", userCtrl.get.userInfo);
 router.get("/boards/board/:bid", boardCtrl.get.boardinfo);
 router.get("/board/image/:bid", boardCtrl.get.boardImg);
 router.get("/boards/:page", boardCtrl.get.boardsinfo);
+router.get("/boards/all", boardCtrl.get.allboardsinfo);
 router.get("/boards/user/:u_id", boardCtrl.get.boardsMyInfo);
 
 router.post("/users/register", userCtrl.post.register);
